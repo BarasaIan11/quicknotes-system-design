@@ -8,6 +8,48 @@ const titleInput = document.getElementById("title-input");
 const bodyInput = document.getElementById("body-input");
 const submitButton = document.getElementById("submit-btn");
 const notesList = document.getElementById("notes-list");
+const agricultureSamples = [
+  {
+    title: "Preparing healthy soil",
+    body: "Add compost before planting to improve soil structure and help crops retain water.",
+  },
+  {
+    title: "Planning a crop rotation",
+    body: "Alternate maize with beans to support soil fertility and break common pest cycles.",
+  },
+  {
+    title: "Watering young seedlings",
+    body: "Water early in the morning and keep the soil moist while seedlings establish their roots.",
+  },
+  {
+    title: "Checking crops for pests",
+    body: "Inspect the underside of leaves each week and remove affected plants before pests spread.",
+  },
+  {
+    title: "Saving water on the farm",
+    body: "A layer of mulch around crops slows evaporation and helps conserve water between rains.",
+  },
+  {
+    title: "Harvesting beans at the right time",
+    body: "Pick green beans while the pods are firm and before the seeds become hard.",
+  },
+  {
+    title: "Keeping farm records",
+    body: "Record planting dates, seed varieties, harvest amounts, and costs to guide next season's plan.",
+  },
+  {
+    title: "Composting crop residues",
+    body: "Mix dry plant material with green kitchen scraps and keep the compost lightly moist.",
+  },
+  {
+    title: "Choosing quality seeds",
+    body: "Use clean, undamaged seeds suited to your local climate and planting season.",
+  },
+  {
+    title: "Storing harvested grain",
+    body: "Dry grain fully before storage and keep it in a clean, sealed container away from moisture.",
+  },
+];
 
 function setStatus(message, kind = "") {
   statusElement.textContent = message;
@@ -61,7 +103,10 @@ async function loadNotes() {
       setStatus("No notes were returned.");
       return;
     }
-    notes.forEach((note) => notesList.append(renderNote(note)));
+    // JSONPlaceholder's sample copy is arbitrary; retain its real IDs for DELETE and use readable agriculture examples.
+    notes.forEach((note, index) => {
+      notesList.append(renderNote({ ...note, ...agricultureSamples[index % agricultureSamples.length] }));
+    });
     setStatus(`Loaded ${notes.length} notes from the server.`, "success");
   } catch (error) {
     setStatus(`Sorry, notes could not be loaded. ${error.message}`, "error");
