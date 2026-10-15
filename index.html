@@ -16,6 +16,17 @@
       <p>Load, create, and remove sample notes from the practice API.</p>
     </header>
 
+    <section class="panel" aria-labelledby="create-heading">
+      <h2 id="create-heading">Create a note</h2>
+      <form id="note-form" novalidate>
+        <label for="title-input">Title <span>(required, up to 100 characters)</span></label>
+        <input id="title-input" name="title" type="text" maxlength="100" required>
+        <label for="body-input">Body <span>(optional)</span></label>
+        <textarea id="body-input" name="body" rows="4"></textarea>
+        <button id="submit-btn" type="submit">Create note</button>
+      </form>
+    </section>
+
     <section class="notes-section" aria-labelledby="notes-heading">
       <div class="notes-heading">
         <h2 id="notes-heading">Notes</h2>
