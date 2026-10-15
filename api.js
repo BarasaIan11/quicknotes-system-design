@@ -33,7 +33,12 @@ function renderNote(note) {
   body.textContent = note.body || "";
   const metadata = document.createElement("small");
   metadata.textContent = `Note ID: ${note.id}`;
-  item.append(heading, body, metadata);
+  const deleteButton = document.createElement("button");
+  deleteButton.type = "button";
+  deleteButton.className = "delete-btn";
+  deleteButton.textContent = "Delete";
+  deleteButton.addEventListener("click", () => deleteNote(note.id, item, deleteButton));
+  item.append(heading, body, metadata, deleteButton);
   return item;
 }
 
@@ -83,6 +88,21 @@ async function createNote(title, body) {
     setStatus(`Sorry, the note could not be created. ${error.message}`, "error");
   } finally {
     submitButton.disabled = false;
+  }
+}
+
+async function deleteNote(id, item, button) {
+  button.disabled = true;
+  setStatus("Deleting note...");
+  try {
+    await request(`${API_URL}/${encodeURIComponent(id)}`, { method: "DELETE" });
+    item.remove();
+    if (!notesList.querySelector(".note-card")) showEmptyState();
+    // JSONPlaceholder simulates DELETE and does not persist creates; remove this item from the current page only.
+    setStatus(`Note ${id} deleted.`, "success");
+  } catch (error) {
+    setStatus(`Sorry, note ${id} could not be deleted. ${error.message}`, "error");
+    button.disabled = false;
   }
 }
 
