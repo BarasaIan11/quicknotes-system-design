@@ -1,0 +1,49 @@
+:root {
+  color-scheme: light;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #172a3a;
+  background: #f3f7f8;
+  font-synthesis: none;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; min-width: 320px; }
+button, input, textarea { font: inherit; }
+button {
+  border: 0;
+  border-radius: 8px;
+  padding: 0.7rem 1rem;
+  background: #087f8c;
+  color: white;
+  font-weight: 650;
+  cursor: pointer;
+}
+button:hover:not(:disabled) { background: #066874; }
+button:disabled { cursor: wait; opacity: 0.6; }
+.container { width: min(760px, calc(100% - 2rem)); margin: 3rem auto; }
+header { margin-bottom: 2rem; }
+h1 { margin: 0.25rem 0; font-size: clamp(2rem, 6vw, 3rem); }
+h2 { margin-top: 0; }
+.eyebrow { color: #087f8c; font-size: 0.8rem; font-weight: 750; letter-spacing: 0.12em; text-transform: uppercase; }
+.panel, .note-card { border: 1px solid #dce6e9; border-radius: 12px; background: white; box-shadow: 0 6px 20px #1737430b; }
+.panel { padding: 1.25rem; }
+form { display: grid; gap: 0.6rem; }
+label { font-weight: 650; }
+label span { color: #657883; font-size: 0.875rem; font-weight: 400; }
+input, textarea { width: 100%; border: 1px solid #b9c9ce; border-radius: 7px; padding: 0.7rem; color: inherit; }
+textarea { resize: vertical; margin-bottom: 0.5rem; }
+.notes-section { margin-top: 2rem; }
+.notes-heading { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.notes-heading h2 { margin: 0; }
+.status { min-height: 1.5em; margin: 1rem 0; color: #526873; }
+.status--success { color: #147447; font-weight: 650; }
+.status--error { color: #b42318; font-weight: 650; }
+#notes-list { display: grid; gap: 0.8rem; margin: 0; padding: 0; list-style: none; }
+.note-card { padding: 1rem; }
+.note-card h3 { margin: 0 0 0.5rem; overflow-wrap: anywhere; }
+.note-card p { margin: 0 0 0.75rem; color: #435965; white-space: pre-wrap; overflow-wrap: anywhere; }
+.note-card small { display: block; margin-bottom: 0.8rem; color: #657883; }
+.delete-btn { padding: 0.45rem 0.75rem; background: #a33a37; }
+.delete-btn:hover:not(:disabled) { background: #832c29; }
+.empty-state { padding: 1rem; border: 1px dashed #b9c9ce; border-radius: 10px; color: #526873; text-align: center; }
+@media (max-width: 480px) { .container { margin: 1.5rem auto; } }
